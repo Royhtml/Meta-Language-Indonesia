@@ -1,8 +1,33 @@
 # Meta Language Indonesia
 
-![VS Code Extension](https://img.shields.io/badge/VS%20Code-1.60.0+-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
-![License](https://img.shields.io/badge/license-MIT-orange.svg)
+<p align="center">
+  <img src="https://github.com/Royhtml/Meta-Language-Indonesia/blob/main/icons/icon.png?raw=true" width="180">
+</p>
+
+<h1 align="center">Meta Language Indonesia</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/VS%20Code-1.60.0+-blue.svg?logo=visual-studio-code&logoColor=white" alt="VS Code Extension">
+  <img src="https://img.shields.io/badge/version-1.0.0-green.svg" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-orange.svg" alt="License">
+  <img src="https://img.shields.io/badge/Python-3.8+-yellow.svg?logo=python&logoColor=white" alt="Python Version">
+</p>
+
+<p align="center">
+  <b>Compiler Bahasa Pemrograman berbasis Bahasa Indonesia yang mudah dipahami dan digunakan.</b>
+</p>
+
+<p align="center">
+  <a href="https://marketplace.visualstudio.com/items?itemName=RoyHtml.meta-lang">
+    <img src="https://img.shields.io/badge/Install_Extension-Visual_Studio_Code-blue?style=for-the-badge&logo=visual-studio-code&logoColor=white">
+  </a>
+  <a href="https://pypi.org/project/meta-language-indonesia/">
+    <img src="https://img.shields.io/badge/Install_Package-PyPI-blue?style=for-the-badge&logo=pypi&logoColor=white">
+  </a>
+  <a href="https://github.com/Royhtml/Meta-Language-Indonesia">
+    <img src="https://img.shields.io/badge/View_Repo-GitHub-181717?style=for-the-badge&logo=github&logoColor=white">
+  </a>
+</p>
 
 ## 📖 Tentang Meta Language
 
@@ -40,6 +65,26 @@
 - Mendeteksi kesalahan sintaks dasar
 - Memberi tahu keyword yang tidak dikenal
 - Saran perbaikan untuk keyword yang salah eja
+
+### 📩 **Compile Meta To Exe**
+
+**1. Language Meta**
+```meta
+meta install meta-language-indonesia
+```
+**Running**
+```meta
+meta_compile
+```
+
+**2. Language python**
+```meta
+pip install meta-language-indonesia
+```
+**Running**
+```meta
+meta_compile
+```
 
 ### 🚀 **Fitur Lengkap Lainnya**
 
