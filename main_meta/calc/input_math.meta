@@ -1,0 +1,43 @@
+-- Program Kalkulator Sederhana dalam Meta Language
+
+meta("="*40)
+meta("     KALKULATOR SEDERHANA")
+meta("="*40)
+
+meta("\nPilih operasi:")
+meta("1. Tambah (+)")
+meta("2. Kurang (-)")
+meta("3. Kali (*)")
+meta("4. Bagi (/)")
+meta("5. Keluar")
+
+selama benar:
+    pilihan = masukan("\nMasukkan pilihan (1-5): ")
+    
+    jika pilihan == "5" maka:
+        meta("Terima kasih telah menggunakan kalkulator!")
+        berhenti
+    
+    pilihan = bilangan(pilihan)
+    
+    jika pilihan >= 1 dan pilihan <= 4 maka:
+        a = desimal(masukan("Masukkan angka pertama: "))
+        b = desimal(masukan("Masukkan angka kedua: "))
+        
+        jika pilihan == 1 maka:
+            hasil = a + b
+            meta(f"Hasil: {a} + {b} = {hasil}")
+        atau jika pilihan == 2 maka:
+            hasil = a - b
+            meta(f"Hasil: {a} - {b} = {hasil}")
+        atau jika pilihan == 3 maka:
+            hasil = a * b
+            meta(f"Hasil: {a} × {b} = {hasil}")
+        atau jika pilihan == 4 maka:
+            jika b != 0 maka:
+                hasil = a / b
+                meta(f"Hasil: {a} ÷ {b} = {hasil}")
+            selain itu:
+                meta("❌ Error: Pembagian dengan nol!")
+    selain itu:
+        meta("❌ Pilihan tidak valid! Silakan coba lagi.")

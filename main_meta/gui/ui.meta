@@ -1,0 +1,57 @@
+-- Program GUI dengan Meta Syntax (Versi Fix Syntax)
+dari tkinter import *
+
+kelas AplikasiKalkulator
+    modul __init__(diri)
+        diri.window = Tk()
+        diri.window.title("Aplikasi Meta Pro")
+        diri.window.geometry("350x450")
+        
+        -- Header
+        diri.label_judul = Label(diri.window, text="Kalkulator Cerdas", font=("Arial", 16))
+        diri.label_judul.pack(pady=15)
+
+        -- Input Area
+        Label(diri.window, text="Masukkan Angka Pertama:").pack()
+        diri.input1 = Entry(diri.window, width=25)
+        diri.input1.pack(pady=5)
+
+        Label(diri.window, text="Masukkan Angka Kedua:").pack()
+        diri.input2 = Entry(diri.window, width=25)
+        diri.input2.pack(pady=5)
+
+        -- Area Hasil
+        diri.label_hasil = Label(diri.window, text="Hasil akan muncul di sini", font=("Arial", 12, "bold"))
+        diri.label_hasil.pack(pady=20)
+
+        -- Tombol-Tombol Operasi
+        diri.tombol_tambah = Button(diri.window, text="Tambah (+)", command=diri.proses_tambah)
+        diri.tombol_tambah.pack(pady=5)
+
+        diri.tombol_bersih = Button(diri.window, text="Bersihkan", command=diri.reset_layar)
+        diri.tombol_bersih.pack(pady=5)
+
+    modul proses_tambah(diri)
+        coba
+            -- Konversi menggunakan rules: desimal -> float, ambil -> get
+            n1 = desimal(diri.input1.get())
+            n2 = desimal(diri.input2.get())
+            total = n1 + n2
+            
+            -- Catatan: Gunakan 'text' (bawaan Tkinter) kecuali kamu punya rule khusus untuk 'teks'
+            diri.label_hasil.config(text="Hasil: " + teks(total), fg="blue")
+            cetak("Log: Berhasil menghitung " + teks(total))
+        kecuali
+            diri.label_hasil.config(text="Error: Masukkan angka valid!", fg="red")
+
+    modul reset_layar(diri)
+        diri.input1.delete(0, END)
+        diri.input2.delete(0, END)
+        diri.label_hasil.config(text="Layar Bersih", fg="black")
+
+    modul jalan(diri)
+        diri.window.mainloop()
+
+-- Eksekusi Program
+app = AplikasiKalkulator()
+app.jalan()

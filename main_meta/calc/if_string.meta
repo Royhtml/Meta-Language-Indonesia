@@ -1,0 +1,27 @@
+-- Program sederhana untuk testing
+
+meta("="*50)
+meta("PROGRAM TEST META LANGUAGE")
+meta("="*50)
+
+-- Testing input
+nama = masukan("Masukkan nama Anda: ")
+meta(f"Halo, {nama}!")
+
+-- Testing list literal
+buah = ["apel", "pisang", "jeruk"]
+meta(f"Buah-buahan: {buah}")
+
+-- Testing list comprehension
+angka = [1, 2, 3, 4, 5]
+kuadrat = [x**2 untuk x dalam angka]
+meta(f"Kuadrat: {kuadrat}")
+
+-- Testing percabangan
+umur = bilangan(masukan("Masukkan umur Anda: "))
+jika umur >= 17 maka:
+    meta("Anda sudah dewasa")
+selain itu:
+    meta("Anda masih anak-anak")
+
+meta("\n✅ Program selesai!")

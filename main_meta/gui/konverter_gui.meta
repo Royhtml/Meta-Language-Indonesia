@@ -1,0 +1,223 @@
+-- Program Konverter Suhu dan Mata Uang
+-- Simpan sebagai: konverter_gui.meta
+
+from tkinter import *
+from tkinter import ttk
+import requests
+
+def buat_konverter():
+    window = Tk()
+    window.title("Konverter Universal - Meta Language")
+    window.geometry("600x500")
+    window.configure(bg="#1a1a2e")
+    
+    -- Notebook untuk tab
+    notebook = ttk.Notebook(window)
+    notebook.pack(pady=20, padx=20, fill="both", expand=True)
+    
+    -- Tab 1: Konverter Suhu
+    frame_suhu = Frame(notebook, bg="#16213e")
+    notebook.add(frame_suhu, text="🌡️ Konverter Suhu")
+    
+    label_suhu = Label(frame_suhu, text="KONVERTER SUHU", font=("Arial", 16, "bold"), 
+                       bg="#16213e", fg="white")
+    label_suhu.pack(pady=20)
+    
+    -- Input suhu
+    frame_input_suhu = Frame(frame_suhu, bg="#16213e")
+    frame_input_suhu.pack(pady=20)
+    
+    label_nilai = Label(frame_input_suhu, text="Nilai:", font=("Arial", 12), 
+                        bg="#16213e", fg="white")
+    label_nilai.grid(row=0, column=0, padx=10)
+    
+    entry_suhu = Entry(frame_input_suhu, font=("Arial", 12), width=15, bg="#ecf0f1")
+    entry_suhu.grid(row=0, column=1, padx=10)
+    
+    -- Pilihan dari
+    label_dari = Label(frame_input_suhu, text="Dari:", font=("Arial", 12), 
+                       bg="#16213e", fg="white")
+    label_dari.grid(row=1, column=0, padx=10, pady=10)
+    
+    combo_dari = ttk.Combobox(frame_input_suhu, values=["Celsius", "Fahrenheit", "Kelvin"], 
+                              width=12, state="readonly")
+    combo_dari.set("Celsius")
+    combo_dari.grid(row=1, column=1, padx=10, pady=10)
+    
+    -- Pilihan ke
+    label_ke = Label(frame_input_suhu, text="Ke:", font=("Arial", 12), 
+                     bg="#16213e", fg="white")
+    label_ke.grid(row=2, column=0, padx=10, pady=10)
+    
+    combo_ke = ttk.Combobox(frame_input_suhu, values=["Celsius", "Fahrenheit", "Kelvin"], 
+                            width=12, state="readonly")
+    combo_ke.set("Fahrenheit")
+    combo_ke.grid(row=2, column=1, padx=10, pady=10)
+    
+    -- Hasil
+    label_hasil_suhu = Label(frame_suhu, text="Hasil: -", font=("Arial", 14, "bold"), 
+                             bg="#16213e", fg="#2ecc71")
+    label_hasil_suhu.pack(pady=20)
+    
+    def konversi_suhu():
+        try:
+            nilai = float(entry_suhu.get())
+            dari = combo_dari.get()
+            ke = combo_ke.get()
+            
+            -- Konversi ke Celsius dulu
+            celsius = 0
+            if dari == "Celsius":
+                celsius = nilai
+            elif dari == "Fahrenheit":
+                celsius = (nilai - 32) * 5/9
+            elif dari == "Kelvin":
+                celsius = nilai - 273.15
+            
+            -- Konversi dari Celsius ke target
+            hasil = 0
+            if ke == "Celsius":
+                hasil = celsius
+            elif ke == "Fahrenheit":
+                hasil = (celsius * 9/5) + 32
+            elif ke == "Kelvin":
+                hasil = celsius + 273.15
+            
+            label_hasil_suhu.config(text=f"Hasil: {hasil:.2f}°{ke[0]}")
+        except:
+            label_hasil_suhu.config(text="Hasil: Input tidak valid!")
+    
+    tombol_konversi_suhu = Button(frame_suhu, text="🔄 Konversi", font=("Arial", 12), 
+                                  bg="#3498db", fg="white", command=konversi_suhu, width=20)
+    tombol_konversi_suhu.pack(pady=20)
+    
+    -- Tab 2: Konverter Mata Uang
+    frame_uang = Frame(notebook, bg="#0f3460")
+    notebook.add(frame_uang, text="💰 Konverter Mata Uang")
+    
+    label_uang = Label(frame_uang, text="KONVERTER MATA UANG", font=("Arial", 16, "bold"), 
+                       bg="#0f3460", fg="white")
+    label_uang.pack(pady=20)
+    
+    -- Info kurs
+    label_info = Label(frame_uang, text="💡 Kurs menggunakan data statis (simulasi)", 
+                       font=("Arial", 9), bg="#0f3460", fg="#bdc3c7")
+    label_info.pack()
+    
+    -- Input nilai
+    frame_input_uang = Frame(frame_uang, bg="#0f3460")
+    frame_input_uang.pack(pady=20)
+    
+    label_nilai_uang = Label(frame_input_uang, text="Nilai:", font=("Arial", 12), 
+                             bg="#0f3460", fg="white")
+    label_nilai_uang.grid(row=0, column=0, padx=10)
+    
+    entry_uang = Entry(frame_input_uang, font=("Arial", 12), width=15, bg="#ecf0f1")
+    entry_uang.grid(row=0, column=1, padx=10)
+    
+    -- Mata uang sumber
+    label_dari_uang = Label(frame_input_uang, text="Dari:", font=("Arial", 12), 
+                            bg="#0f3460", fg="white")
+    label_dari_uang.grid(row=1, column=0, padx=10, pady=10)
+    
+    mata_uang = ["IDR", "USD", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "CNY", "SGD"]
+    combo_dari_uang = ttk.Combobox(frame_input_uang, values=mata_uang, width=12, state="readonly")
+    combo_dari_uang.set("IDR")
+    combo_dari_uang.grid(row=1, column=1, padx=10, pady=10)
+    
+    -- Mata uang tujuan
+    label_ke_uang = Label(frame_input_uang, text="Ke:", font=("Arial", 12), 
+                          bg="#0f3460", fg="white")
+    label_ke_uang.grid(row=2, column=0, padx=10, pady=10)
+    
+    combo_ke_uang = ttk.Combobox(frame_input_uang, values=mata_uang, width=12, state="readonly")
+    combo_ke_uang.set("USD")
+    combo_ke_uang.grid(row=2, column=1, padx=10, pady=10)
+    
+    label_hasil_uang = Label(frame_uang, text="Hasil: -", font=("Arial", 14, "bold"), 
+                             bg="#0f3460", fg="#2ecc71")
+    label_hasil_uang.pack(pady=20)
+    
+    label_kurs = Label(frame_uang, text="", font=("Arial", 9), bg="#0f3460", fg="#bdc3c7")
+    label_kurs.pack()
+    
+    def konversi_uang():
+        try:
+            nilai = float(entry_uang.get())
+            dari = combo_dari_uang.get()
+            ke = combo_ke_uang.get()
+            
+            -- Kurs tetap (simulasi - untuk demo offline)
+            kurs = {
+                "USD": 1.0, "EUR": 0.85, "JPY": 110.0, "GBP": 0.73, "AUD": 1.35,
+                "CAD": 1.25, "CHF": 0.92, "CNY": 6.45, "SGD": 1.35, "IDR": 14500.0
+            }
+            
+            -- Konversi ke USD dulu
+            usd = nilai / kurs.get(dari, 1.0)
+            hasil = usd * kurs.get(ke, 1.0)
+            
+            label_hasil_uang.config(text=f"Hasil: {hasil:,.2f} {ke}")
+            label_kurs.config(text=f"Kurs: 1 {dari} = {kurs.get(ke, 1.0)/kurs.get(dari, 1.0):.4f} {ke}")
+            
+        except:
+            label_hasil_uang.config(text="Hasil: Input tidak valid!")
+    
+    tombol_konversi_uang = Button(frame_uang, text="🔄 Konversi", font=("Arial", 12), 
+                                  bg="#e67e22", fg="white", command=konversi_uang, width=20)
+    tombol_konversi_uang.pack(pady=20)
+    
+    -- Tab 3: Informasi
+    frame_info = Frame(notebook, bg="#1b1b2f")
+    notebook.add(frame_info, text="ℹ️ Informasi")
+    
+    text_info = Text(frame_info, font=("Arial", 11), bg="#1b1b2f", fg="white", 
+                     wrap="word", padx=20, pady=20)
+    text_info.pack(fill="both", expand=True)
+    
+    info_teks = """
+    📘 META LANGUAGE - GUI APPLICATION
+    
+    Program ini dibuat menggunakan Meta Language,
+    bahasa pemrograman dengan sintaks Bahasa Indonesia.
+    
+    ✨ FITUR YANG TERSEDIA:
+    
+    1. Konverter Suhu
+       • Celsius, Fahrenheit, Kelvin
+       • Konversi akurat dengan rumus matematika
+    
+    2. Konverter Mata Uang
+       • Support 10 mata uang dunia
+       • Kurs update (simulasi)
+       • Tampilkan kurs saat ini
+    
+    🚀 CARA MENGGUNAKAN:
+    
+    • Pilih tab yang diinginkan
+    • Masukkan nilai yang akan dikonversi
+    • Pilih satuan/mata uang sumber dan tujuan
+    • Klik tombol Konversi
+    
+    💡 TIPS:
+    
+    • Untuk suhu, gunakan angka desimal (contoh: 32.5)
+    • Untuk mata uang, masukkan angka tanpa pemisah ribuan
+    • Hasil akan ditampilkan secara otomatis
+    
+    🎯 DIBUAT DENGAN:
+    
+    • Meta Language Interpreter v3.1
+    • Tkinter GUI Framework
+    • Python 3.x
+    
+    Selamat mencoba! 🎉
+    """
+    
+    text_info.insert("1.0", info_teks)
+    text_info.config(state="disabled")
+    
+    window.mainloop()
+
+-- Jalankan konverter
+buat_konverter()

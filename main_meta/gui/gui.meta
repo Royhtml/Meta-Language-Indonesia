@@ -1,0 +1,37 @@
+-- Program GUI dengan Tkinter
+
+dari tkinter import *
+
+modul buat_window():
+    window = Tk()
+    window.title("Aplikasi Meta GUI")
+    window.geometry("400x300")
+    
+    -- Label
+    label = Label(window, text="Selamat datang di Meta!", font=("Arial", 16))
+    label.pack(pady=20)
+    
+    -- Entry
+    entry = Entry(window, width=30)
+    entry.pack(pady=10)
+    
+    -- Function untuk tombol
+    modul tampilkan_nama():
+        nama = entry.get()
+        jika nama != "" maka:
+            label_hasil.config(text="Halo, " + nama + "!")
+        selain itu:
+            label_hasil.config(text="Masukkan nama dulu!")
+    
+    -- Tombol
+    tombol = Button(window, text="Sapa Saya", command=tampilkan_nama)
+    tombol.pack(pady=10)
+    
+    -- Label hasil
+    label_hasil = Label(window, text="", font=("Arial", 12))
+    label_hasil.pack(pady=20)
+    
+    window.mainloop()
+
+-- Jalankan GUI
+buat_window()

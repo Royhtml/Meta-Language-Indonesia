@@ -1,0 +1,45 @@
+-- Program Kalkulator Meta
+dari tkinter import *
+
+kelas KalkulatorMeta
+    modul __init__(diri)
+        diri.window = Tk()
+        diri.window.title("Kalkulator Meta")
+        diri.window.geometry("350x450")
+        
+        diri.label_judul = Label(diri.window, text="KALKULATOR", font=("Arial", 14))
+        diri.label_judul.pack(pady=10)
+
+        diri.e1 = Entry(diri.window)
+        diri.e1.pack(pady=5)
+        
+        diri.e2 = Entry(diri.window)
+        diri.e2.pack(pady=5)
+
+        diri.hasil_txt = Label(diri.window, text="Hasil: 0")
+        diri.hasil_txt.pack(pady=10)
+
+        -- Gunakan fungsi biasa untuk menghindari error lambda di beberapa transpiler
+        Button(diri.window, text="TAMBAH", command=diri.tambah).pack(pady=5)
+        Button(diri.window, text="RESET", command=diri.reset).pack(pady=5)
+
+    modul tambah(diri)
+        coba
+            v1 = desimal(diri.e1.get())
+            v2 = desimal(diri.e2.get())
+            total = v1 + v2
+            diri.hasil_txt.config(text="Hasil: " + teks(total))
+        kecuali
+            diri.hasil_txt.config(text="Error Input")
+
+    modul reset(diri)
+        diri.e1.delete(0, END)
+        diri.e2.delete(0, END)
+        diri.hasil_txt.config(text="Hasil: 0")
+
+    modul jalan(diri)
+        diri.window.mainloop()
+
+-- Baris 32-40 biasanya ada di area eksekusi ini
+app = KalkulatorMeta()
+app.jalan()

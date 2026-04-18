@@ -1,0 +1,37 @@
+-- Program dengan list
+buah = ["apel", "pisang", "jeruk", "mangga"]
+meta("Daftar buah:", buah)
+meta("Buah pertama:", buah[0])
+meta("Jumlah buah:", panjang(buah))  -- GANTI INI
+
+-- List comprehension
+angka = [1, 2, 3, 4, 5]
+kuadrat = [x**2 untuk x dalam angka]
+meta("Kuadrat:", kuadrat)
+
+-- Dictionary
+siswa = {
+    "nama": "Budi",
+    "kelas": "10A",
+    "nilai": [85, 90, 88]
+}
+meta(siswa["nama"], "dari kelas", siswa["kelas"])
+
+-- Cara 1: menggunakan fungsi panjang() pada list
+nilai_rata = jumlah(siswa["nilai"]) / panjang(siswa["nilai"])  -- GANTI INI
+meta("Nilai rata-rata (cara 1):", nilai_rata)
+
+-- Cara 2: menggunakan fungsi panjang() bawaan
+nilai_rata2 = jumlah(siswa["nilai"]) / panjang(siswa["nilai"])  -- GANTI INI
+meta("Nilai rata-rata (cara 2):", nilai_rata2)
+
+-- Program tambahan: perulangan sederhana
+meta("\n=== Daftar Buah dengan Nomor ===")
+untuk i dalam rentang(panjang(buah)):  -- GANTI INI
+    meta(f"{i+1}. {buah[i]}")
+
+-- Program tambahan: menghitung total nilai
+total_nilai = jumlah(siswa["nilai"])
+meta(f"\nTotal nilai {siswa['nama']}: {total_nilai}")
+meta(f"Nilai tertinggi: {maksimal(siswa['nilai'])}")
+meta(f"Nilai terendah: {minimal(siswa['nilai'])}")
