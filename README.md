@@ -70,7 +70,7 @@
 
 **1. Language Meta**
 ```meta
-meta install meta-language-indonesia
+meta -m pip install meta-language-indonesia
 ```
 **Running**
 ```meta
